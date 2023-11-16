@@ -27,10 +27,6 @@ jobs:
   frontend-build:
     name: Frontend Build and Test
     runs-on: ubuntu-latest
-
-    strategy:
-       matrix:
-         node-version: [16.x, 18.x, 20.x]
     
     defaults:
        run:
@@ -41,8 +37,7 @@ jobs:
       - name: Use Node.js 
         uses: actions/setup-node@v2
         with:
-          #node-version: 20.9.0
-          node-version: ${{ matrix.node-version }}
+          node-version: 20.9.0
           cache: 'npm'
           cache-dependency-path: './00-spring-petclinic-deployment/spring-petclinic-angular/package-lock.json'
       - name: Install Dependencies
