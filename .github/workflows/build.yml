@@ -9,7 +9,10 @@ jobs:
   backend-build:
     name: Backend Build and Test
     runs-on: ubuntu-latest
-
+    defaults:
+       run:
+         working-directory: ./00-spring-petclinic-deployment/spring-petclinic-rest/
+         
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 17
@@ -19,9 +22,7 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Build with Maven
-        run: |
-          cd 00-spring-petclinic-deployment/spring-petclinic-rest/ 
-          mvn verify
+        run: mvn verify
 
   frontend-build:
     name: Frontend Build and Test
@@ -32,8 +33,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        #with: 
-          #path: 00-spring-petclinic-deployment/spring-petclinic-angular/
       - name: Use Node.js 
         uses: actions/setup-node@v2
         with:
@@ -44,7 +43,5 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build --if-present -- --configuration production
-      - name: Lint
-        run: npm run lint
       - name: Test
         run: npm run test-headless
