@@ -39,7 +39,7 @@ jobs:
         with:
           node-version: 20.9.0
           cache: 'npm'
-          cache-dependency-path: './package-lock.json'
+          cache-dependency-path: './00-spring-petclinic-deployment/spring-petclinic-angular/package-lock.json'
       - name: Install Dependencies
         run: npm ci
       - name: Build
