@@ -20,4 +20,4 @@ jobs:
       - name: Build with Maven
         run: |
           cd 00-spring-petclinic-deployment/spring-petclinic-rest/ 
-          mvn -B install --file pom.xml -Djacoco.skip=true -DdisableXmlReport=true
+          mvn verify
