@@ -1,0 +1,17 @@
+name: Build PostgreSQL Docker Image
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build Docker image
+      run: docker build -t petclinic-postgres:latest -f 00-spring-petclinic-deployment/postgres/Dockerfile .
