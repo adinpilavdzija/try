@@ -26,6 +26,9 @@ jobs:
   frontend-build:
     name: Frontend Build and Test
     runs-on: ubuntu-latest
+    defaults:
+       run:
+         working-directory: ./00-spring-petclinic-deployment/spring-petclinic-angular/
 
     steps:
       - uses: actions/checkout@v2
@@ -38,9 +41,7 @@ jobs:
           cache: 'npm'
           cache-dependency-path: './00-spring-petclinic-deployment/spring-petclinic-angular/package-lock.json'
       - name: Install Dependencies
-        run: | 
-          cd 00-spring-petclinic-deployment/spring-petclinic-angular/ 
-          npm ci
+        run: npm ci
       - name: Build
         run: npm run build --if-present -- --configuration production
       - name: Lint
