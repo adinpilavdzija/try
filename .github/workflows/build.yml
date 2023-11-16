@@ -29,15 +29,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        with: 
-          path: 00-spring-petclinic-deployment/spring-petclinic-angular/
+        #with: 
+          #path: 00-spring-petclinic-deployment/spring-petclinic-angular/
       - name: Use Node.js 
         uses: actions/setup-node@v2
         with:
           node-version: 20.9.0
           cache: 'npm'
       - name: Install Dependencies
-        run: npm ci
+        run: | 
+          cd 00-spring-petclinic-deployment/spring-petclinic-angular/ 
+          npm ci
       - name: Build
         run: npm run build --if-present -- --configuration production
       - name: Lint
