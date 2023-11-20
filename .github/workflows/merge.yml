@@ -2,12 +2,13 @@ name: Build and Push Docker Images on Develop Merge
 
 on:
   pull_request:
-    types: merged
+    types: closed
     branches: 
       - develop
 
 jobs:
   backend-build-and-deploy:
+    if: github.event.pull_request.merged == true
     name: Backend Build and Test
     runs-on: ubuntu-latest
     defaults:
@@ -41,6 +42,7 @@ jobs:
           docker push ${{ secrets.DOCKER_USERNAME }}/petclinic-rest:latest
 
   frontend-build:
+    if: github.event.pull_request.merged == true
     name: Frontend Build and Test
     runs-on: ubuntu-latest
     defaults:
