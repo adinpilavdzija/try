@@ -43,7 +43,7 @@ jobs:
         with:
           context: ./00-spring-petclinic-deployment/spring-petclinic-rest/
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/petclinic-rest:${{ github.head_ref }}.${{ github.sha }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/petclinic-rest:${{ github.sha::7 }}
 
   frontend-build-and-deploy:
     if: github.event.pull_request.merged == true
