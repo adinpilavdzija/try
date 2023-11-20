@@ -50,6 +50,7 @@ jobs:
   frontend-build-and-deploy:
     if: github.event.pull_request.merged == true
     name: Frontend Build and Deploy
+    needs: backend-build-and-deploy
     runs-on: ubuntu-latest
     defaults:
        run:
@@ -83,4 +84,4 @@ jobs:
         with:
           context: ./00-spring-petclinic-deployment/spring-petclinic-angular/
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/petclinic-angular:${{ steps.vars.outputs.sha_short }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/petclinic-angular:${{ needs.backend-build-and-deploy.steps.vars.outputs.sha_short }}
