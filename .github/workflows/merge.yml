@@ -36,10 +36,17 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           #logout: # optional, default is true
 
-      - name: Build and Push Backend Docker Image
-        run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/petclinic-rest:latest .
-          docker push ${{ secrets.DOCKER_USERNAME }}/petclinic-rest:latest
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/petclinic-rest:latest
+
+      #- name: Build and Push Backend Docker Image
+        #run: |
+          #docker build -t ${{ secrets.DOCKER_USERNAME }}/petclinic-rest:latest .
+          #docker push ${{ secrets.DOCKER_USERNAME }}/petclinic-rest:latest
 
   frontend-build:
     if: github.event.pull_request.merged == true
