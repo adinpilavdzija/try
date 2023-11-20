@@ -84,4 +84,4 @@ jobs:
         with:
           context: ./00-spring-petclinic-deployment/spring-petclinic-angular/
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/petclinic-angular:${{ needs.backend-build-and-deploy.steps.vars.outputs.sha_short }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/petclinic-angular:${{ needs.backend-build-and-deploy.outputs.sha_short }}
