@@ -42,7 +42,6 @@ jobs:
   frontend-build:
     name: Frontend Build and Test
     runs-on: ubuntu-latest
-    
     defaults:
        run:
          working-directory: ./00-spring-petclinic-deployment/spring-petclinic-angular/
