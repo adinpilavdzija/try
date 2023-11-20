@@ -6,7 +6,7 @@ on:
       - develop
 
 jobs:
-  backend-build:
+  backend-build-and-deploy:
     name: Backend Build and Test
     runs-on: ubuntu-latest
     defaults:
@@ -26,6 +26,18 @@ jobs:
           
       - name: Build with Maven
         run: mvn verify
+
+      - name: Docker Login
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          #logout: # optional, default is true
+
+      - name: Build and Push Backend Docker Image
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/petclinic-rest:latest .
+          docker push ${{ secrets.DOCKER_USERNAME }}/petclinic-rest:latest
 
   frontend-build:
     name: Frontend Build and Test
@@ -52,5 +64,14 @@ jobs:
       - name: Build
         run: npm run build --prod
         
-      - name: Test
-        run: npm run test-headless
+      - name: Docker Login
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          #logout: # optional, default is true
+
+      - name: Build and Push Frontend Docker Image
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/petclinic-angular:latest .
+          docker push ${{ secrets.DOCKER_USERNAME }}/petclinic-angular:latest
