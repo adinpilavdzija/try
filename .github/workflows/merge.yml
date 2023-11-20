@@ -1,7 +1,8 @@
 name: Build and Push Docker Images on Develop Merge
 
 on:
-  push:
+  pull_request:
+    types: closed
     branches: 
       - develop
 
