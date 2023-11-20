@@ -79,9 +79,13 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Set outputs
+        id: vars
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
       - name: Build and push Docker images
         uses: docker/build-push-action@v5
         with:
           context: ./00-spring-petclinic-deployment/spring-petclinic-angular/
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/petclinic-angular:${{ needs.backend-build-and-deploy.outputs.sha_short }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/petclinic-angular:${{ steps.vars.outputs.sha_short }}
