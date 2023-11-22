@@ -1,6 +1,6 @@
 name: Validate Pull Request on Develop
 
-on:
+#on:
   pull_request:
     branches: 
       - develop
