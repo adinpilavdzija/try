@@ -19,8 +19,8 @@ jobs:
       - name: Check out repository     
         uses: actions/checkout@v4
 
-      - run: |
-          security -v unlock-keychain ~/Library/Keychains/login.keychain-db
+      #- run: |
+          #security -v unlock-keychain ~/Library/Keychains/login.keychain-db
 
       - name: Docker Login
         uses: docker/login-action@v3
