@@ -29,7 +29,7 @@ jobs:
           context: ./00-spring-petclinic-deployment/spring-petclinic-rest/
           push: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/spring-petclinic-rest:${{ steps.sha_step.outputs.sha_short }}
+            ${{ secrets.DOCKER_USERNAME }}/spring-petclinic-rest:$sha_short
             ${{ secrets.DOCKER_USERNAME }}/spring-petclinic-rest:latest
 
   frontend:
