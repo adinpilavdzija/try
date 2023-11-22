@@ -39,7 +39,6 @@ jobs:
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/spring-petclinic-rest:${{ steps.sha_step.outputs.sha_short }}
             ${{ secrets.DOCKER_USERNAME }}/spring-petclinic-rest:latest
-          #tags: ${{ secrets.DOCKER_USERNAME }}/petclinic-rest:${{ github.sha }}
 
   frontend:
     if: github.event.pull_request.merged == true
@@ -62,3 +61,17 @@ jobs:
           tags: | 
             ${{ secrets.DOCKER_USERNAME }}/spring-petclinic-angular:${{ needs.backend.outputs.sha_short }}
             ${{ secrets.DOCKER_USERNAME }}/spring-petclinic-angular:latest
+    
+  docker-compose:
+    name: Docker Compose
+    needs: frontend
+    runs-on: self-hosted
+
+    steps:
+      - name: Check out repository       
+        uses: actions/checkout@v4
+
+      - name: Docker Compose Action
+        uses: isbang/compose-action@v1.5.1
+        with:
+          compose-file: "./00-spring-petclinic-deployment/docker-compose.yml"
