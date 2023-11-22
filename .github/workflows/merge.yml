@@ -11,9 +11,9 @@ jobs:
     if: github.event.pull_request.merged == true
     name: Backend Build and Deploy
     runs-on: self-hosted
-    #defaults:
-       #run:
-         #working-directory: ./00-spring-petclinic-deployment/spring-petclinic-rest/
+    defaults:
+       run:
+         working-directory: ./00-spring-petclinic-deployment/spring-petclinic-rest/
     outputs:
       sha_short: ${{ steps.sha_step.outputs.sha_short }}
       
@@ -39,9 +39,9 @@ jobs:
     name: Frontend Build and Deploy
     needs: backend
     runs-on: self-hosted
-    #defaults:
-       #run:
-         #working-directory: ./00-spring-petclinic-deployment/spring-petclinic-angular/
+    defaults:
+       run:
+         working-directory: ./00-spring-petclinic-deployment/spring-petclinic-angular/
 
     steps: 
       - name: Check out repository       
@@ -67,8 +67,3 @@ jobs:
 
       - name: Docker Compose
         run: docker compose -f ./00-spring-petclinic-deployment/docker-compose.yml up -d
-
-      #- name: Docker Compose Action
-        #uses: isbang/compose-action@v1.5.1
-        #with:
-          #compose-file: "./00-spring-petclinic-deployment/docker-compose.yml"
