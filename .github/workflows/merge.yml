@@ -9,7 +9,7 @@ on:
 jobs:
   backend:
     if: github.event.pull_request.merged == true
-    name: Backend Build and Deploy
+    name: Backend Build and Push Image
     runs-on: self-hosted
     defaults:
        run:
@@ -36,7 +36,7 @@ jobs:
 
   frontend:
     if: github.event.pull_request.merged == true
-    name: Frontend Build and Deploy
+    name: Frontend Build and Push Image
     needs: backend
     runs-on: self-hosted
     defaults:
@@ -58,7 +58,7 @@ jobs:
     
   docker-compose:
     name: Docker Compose
-    needs: frontend
+    needs: [backend, frontend]
     runs-on: self-hosted
 
     steps:
