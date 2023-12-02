@@ -41,6 +41,10 @@ export class OwnerService {
     this.handlerError = httpErrorHandler.createHandleError('OwnerService');
   }
 
+  doNothing(): void {
+    // This method is empty
+  }
+
   getOwners(): Observable<Owner[]> {
     return this.http
       .get<Owner[]>(this.entityUrl)
