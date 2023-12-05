@@ -14,10 +14,11 @@ services:
     container_name: petclinic-postgres
 
   petclinic-rest:
-    build:
-      context: ./spring-petclinic-rest/
-      dockerfile: Dockerfile
-    image: petclinic-rest
+#    build:
+#      context: ./spring-petclinic-rest/
+#      dockerfile: Dockerfile
+#    image: petclinic-rest
+    image: adinpilavdzija/spring-petclinic-rest
     depends_on:
       - petclinic-postgres
     environment: 
@@ -31,10 +32,11 @@ services:
     container_name: petclinic-rest
 
   petclinic-angular:
-    build:
-      context: ./spring-petclinic-angular/
-      dockerfile: Dockerfile
-    image: petclinic-angular
+#    build:
+#      context: ./spring-petclinic-angular/
+#      dockerfile: Dockerfile
+#    image: petclinic-angular
+    image: adinpilavdzija/spring-petclinic-angular
     depends_on:
       - petclinic-rest
     ports:
@@ -44,7 +46,8 @@ services:
     container_name: petclinic-angular
 
 networks:
-  petclinic-network: 
+  petclinic-network:
+    name: petclinic-network
 
 volumes:
   psql-db:
