@@ -70,7 +70,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Docker Compose
-        run: docker compose -f ./00-spring-petclinic-deployment/docker-compose.yml up -d --builD
+        run: docker compose -f ./00-spring-petclinic-deployment/docker-compose.yml up -d --build
         #--build opcija
         #--force-recreate
         ##stavio bez -d
