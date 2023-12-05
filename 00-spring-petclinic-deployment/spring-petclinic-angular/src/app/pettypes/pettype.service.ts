@@ -39,6 +39,10 @@ export class PetTypeService {
     this.handlerError = httpErrorHandler.createHandleError('OwnerService');
   }
 
+  private doNothing(): any {
+    return; // You can also return undefined explicitly
+  }
+
   getPetTypes(): Observable<PetType[]> {
     return this.http.get<PetType[]>(this.entityUrl)
       .pipe(
