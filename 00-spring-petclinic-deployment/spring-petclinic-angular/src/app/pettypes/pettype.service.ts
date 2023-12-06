@@ -39,9 +39,14 @@ export class PetTypeService {
     this.handlerError = httpErrorHandler.createHandleError('OwnerService');
   }
 
-  private doNothing(): any {
-     return; // You can also return undefined explicitly
+  //private doNothing(): any {
+  //   return; // You can also return undefined explicitly
+  //}
+
+  private doNothing(): void {
+    console.log("I'm doing nothing.");
   }
+
 
   getPetTypes(): Observable<PetType[]> {
     return this.http.get<PetType[]>(this.entityUrl)

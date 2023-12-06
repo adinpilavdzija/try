@@ -18,7 +18,7 @@ services:
     build:
       context: ./spring-petclinic-rest/
       dockerfile: Dockerfile
-    image: spring-petclinic-rest:latest
+    image: adinpilavdzija/spring-petclinic-rest:latest
 #
 #    image: adinpilavdzija/spring-petclinic-rest
     depends_on:
@@ -38,7 +38,7 @@ services:
     build:
       context: ./spring-petclinic-angular/
       dockerfile: Dockerfile
-    image: spring-petclinic-angular:latest
+    image: adinpilavdzija/spring-petclinic-angular:latest
 #
 #    image: adinpilavdzija/spring-petclinic-angular
     depends_on:
